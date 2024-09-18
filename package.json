@@ -1,0 +1,49 @@
+{
+  "name": "@webreflection/re",
+  "version": "0.0.0",
+  "main": "./cjs/index.js",
+  "scripts": {
+    "build": "npm run cjs && npm run rollup:index && npm run test",
+    "cjs": "ascjs --no-default esm cjs",
+    "rollup:index": "rollup --config rollup/index.config.js",
+    "test": "c8 node test/index.js",
+    "coverage": "mkdir -p ./coverage; c8 report --reporter=text-lcov > ./coverage/lcov.info"
+  },
+  "keywords": [
+    "RegExp",
+    "tag",
+    "sanitize",
+    "escape"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "MIT",
+  "description": "A template literal tag that sanitizes interpolations",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "ascjs": "^6.0.3",
+    "c8": "^10.1.2",
+    "rollup": "^4.21.3"
+  },
+  "module": "./esm/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "unpkg": "index.js",
+  "dependencies": {
+    "escape-string-regexp": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebReflection/re.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebReflection/re/issues"
+  },
+  "homepage": "https://github.com/WebReflection/re#readme"
+}

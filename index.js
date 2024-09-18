@@ -1,0 +1,1 @@
+const e=RegExp.escape||function(e){if("string"!=typeof e)throw new TypeError("Expected a string");return e.replace(/[|\\{}()[\]^$+*?.]/g,"\\$&").replace(/-/g,"\\x2d")};var r=({raw:r},...t)=>{let[n]=r,{length:a}=r,p=0;for(;++p<a;)n+=e(t[p-1])+r[p];return p=n.lastIndexOf("/"),new RegExp(n.slice(1,p),n.slice(p+1))};export{r as default};
