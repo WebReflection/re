@@ -1,6 +1,7 @@
-import escape from 'escape-string-regexp';
+import escapeString from 'escape-string-regexp';
 
-const scape = RegExp.escape || escape;
+const escape = RegExp.escape || escapeString;
+const scape = value => escape(value);
 
 /**
  * Sanitize interpolations for safer RegExp definition.
@@ -11,7 +12,7 @@ const scape = RegExp.escape || escape;
 export default ({ raw }, ...values) => {
   let [e] = raw, { length } = raw, i = 0;
   while (++i < length)
-    e += scape(values[i - 1]) + raw[i];
+    e += [].concat(values[i - 1]).map(scape).join('|') + raw[i];
   i = e.lastIndexOf('/');
   return new RegExp(e.slice(1, i), e.slice(i + 1));
 };

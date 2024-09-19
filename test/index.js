@@ -8,8 +8,8 @@ const assert = (current, expected, message = 'invalid result') => {
     throw new Error(`expected ${expected} but got ${current}`);
 };
 
-let { source, flags } = re`/a/`;
-assert(source, 'a');
+let { source, flags } = re`/${['a|', 'b']}/`;
+assert(source, 'a\\||b');
 assert(flags, '');
 
 ({ source, flags } = re`/a/g`);

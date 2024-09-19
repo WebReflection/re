@@ -7,9 +7,14 @@ A template literal tag that sanitizes interpolations.
 ```js
 import re from '@webreflection/re';
 
+// strings get escaped
 const interpolations = '?';
 
-const safe = re`/unescaped (reg|exp) code with ${interpolations}!/m`;
+// arrays get joined by `|` after
+// escaping each single value
+const options = ['reg', 'exp'];
+
+const safe = re`/unescaped (${options}) code with ${interpolations}!/m`;
 
 safe.test('unescaped reg code with ?!');  // true
 safe.test('unescaped exp code with ?!');  // true
